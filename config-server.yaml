@@ -38,5 +38,5 @@
 
     - name: Install SNMP WMI Provider feature using PowerShell
       win_shell: |
-        Install-WindowsFeature -Name SNMP-WMI-Provider
+        Add-WindowsCapability-Name SNMP-WMI-Provider
       when: ansible_os_family == "Windows"
