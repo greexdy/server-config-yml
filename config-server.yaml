@@ -35,3 +35,12 @@
       win_shell: |
         Add-WindowsCapability -Online -Name "SNMP.Client~~~~0.0.1.0"
       when: ansible_os_family == "Windows"
+
+    - name: Retrieve Windows Product Key
+      win_shell: |
+        (Get-WmiObject -query 'select * from SoftwareLicensingService').OA3xOriginalProductKey
+      register: product_key
+
+    - name: Display Windows Product Key
+      debug:
+        msg: "Windows Product Key: {{ product_key.stdout }}"
