@@ -30,7 +30,7 @@
       win_chocolatey:
         name: chocolatey
         state: latest
-      - name: Install SNMP feature
+    - name: Install SNMP feature
       win_feature:
         name: SNMP
         state: present
