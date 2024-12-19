@@ -58,3 +58,19 @@
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "AutoAdminLogon" -Value "1"
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "DefaultUser Name" -Value "newuser"
         Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name "DefaultPassword" -Value "P@ssw0rd"
+        
+    - name: Enable Remote Desktop
+      win_regedit:
+        path: HKLM\System\CurrentControlSet\Control\Terminal Server
+        name: fDenyTSConnections
+        type: dword
+        data: 0
+
+    - name: Allow Remote Desktop through firewall
+      win_firewall_rule:
+        name: "Remote Desktop"
+        enable: yes
+        direction: in
+        action: allow
+        protocol: TCP
+        localport: 3389
