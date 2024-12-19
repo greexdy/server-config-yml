@@ -1,5 +1,5 @@
 ---
-- name: Configure Windows 11 Client
+- name: Configure Windows 10 Client
   hosts: windows
   tasks:
     - name: Install SNMP feature
@@ -7,7 +7,7 @@
         name: SNMP
         state: present
 
-    - name: Enable SNMP Client for Windows 10/11
+    - name: Enable SNMP Client for Windows 10
       win_shell: |
         Add-WindowsCapability -Online -Name "SNMP.Client~~~~0.0.1.0"
 
@@ -38,7 +38,7 @@
     - name: Set default user name for auto login
       win_regedit:
         path: HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
-        name: DefaultUser  Name
+        name: DefaultUser Name
         type: string
         data: CCTV
 
