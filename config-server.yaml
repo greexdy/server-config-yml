@@ -35,8 +35,3 @@
       win_shell: |
         Add-WindowsCapability -Online -Name "SNMP.Client~~~~0.0.1.0"
       when: ansible_os_family == "Windows"
-
-   - name: Install SNMP WMI Provider feature using PowerShell
-      win_shell: |
-        Add-WindowsCapability -Online -Name "SNMP.WMIProvider~~~~0.0.1.0"
-      when: ansible_os_family == "Windows"
