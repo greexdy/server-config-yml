@@ -30,12 +30,13 @@
       win_chocolatey:
         name: chocolatey
         state: latest
-    - name: Install SNMP feature
-      win_feature:
-        name: SNMP
-        state: present
 
-    - name: Install SNMP WMI Provider feature
-      win_feature:
-        name: SNMP-WMI-Provider
-        state: present
+    - name: Install SNMP feature using PowerShell
+      win_shell: |
+        Install-WindowsFeature -Name SNMP -IncludeManagementTools
+      when: ansible_os_family == "Windows"
+
+    - name: Install SNMP WMI Provider feature using PowerShell
+      win_shell: |
+        Install-WindowsFeature -Name SNMP-WMI-Provider
+      when: ansible_os_family == "Windows"
