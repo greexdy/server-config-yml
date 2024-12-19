@@ -30,3 +30,12 @@
       win_chocolatey:
         name: chocolatey
         state: latest
+      - name: Install SNMP feature
+      win_feature:
+        name: SNMP
+        state: present
+
+    - name: Install SNMP WMI Provider feature
+      win_feature:
+        name: SNMP-WMI-Provider
+        state: present
